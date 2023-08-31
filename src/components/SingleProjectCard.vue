@@ -1,7 +1,9 @@
 <template>
+
     <div class="card">
         <div class="img-wrapper">
-            <img :src="image" alt="">
+            <img v-if=" image.startsWith('http') " :src="image" alt="">
+            <img v-else :src=" 'http://127.0.0.1:8000/storage/'+ image" alt="">
         </div>
         
         <div class="card-title">
@@ -14,6 +16,7 @@
             {{ type }}
         </div>
     </div>
+
 </template>
 
 <script>
@@ -36,6 +39,7 @@ export default {
     @use '../styles/partials/mixins' as*;
     @use '../styles/partials/variables' as*;
 
+    
     div.card{
         width: calc((100% / 4) - 30px);
         background-color: green;
@@ -43,15 +47,18 @@ export default {
         display: flex;
         flex-direction: column;
         align-content: space-between;
-        text-align: center;
+        height: 500px;
+        text-align: justify;
         border-radius: 10px;
-        padding: 0px 10px;
+        padding: 10px 10px;
+        
 
         div.card-title{
             color: white;
             padding: 10px 0px;
-            font-size: 1rem;
+            font-size: 1.2rem;
             font-weight: 600;
+            text-align: center;
         }
 
         div.card-type{
